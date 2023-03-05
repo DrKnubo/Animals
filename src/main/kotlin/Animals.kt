@@ -146,5 +146,14 @@ fun main(args: Array<String>) {
     nWolf.sleep()
     val nHippo = Hippo()
     nHippo.eat()
+    println("neuer Text")
+
+    val roamables = arrayOf(Hippo(), Wolf(), Vehicle())
+    for (item in roamables){
+        item.roam()
+        if (item is Animal){
+            item.eat()
+        }
+    }
 
 }
