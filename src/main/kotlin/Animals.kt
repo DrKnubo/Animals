@@ -1,17 +1,19 @@
-open class Animal {
-    open val image = ""
-    open val food = ""
-    open val habitat = ""
+interface Roamable{
+    fun roam()
+}
+
+abstract class Animal : Roamable {
+   abstract val image : String
+   abstract val food : String
+   abstract val habitat : String
     var hunger = 10
-    open fun makeNoise() {
-        println("The Animal is making a noise")
-    }
 
-    open fun eat() {
-        println("The Animal is eating")
-    }
+    abstract fun makeNoise()
+    //open fun makeNoise(){println("The Animal is making a noise")}
+    abstract fun eat() //{println("The Animal is eating")}
 
-    open fun roam() {
+
+    override fun roam() {
         println("The Animal is roaming")
     }
 
@@ -27,14 +29,15 @@ class Hippo : Animal() {
         println("Grunt! Grunt!")
     }
     override fun eat() {
-        println("The Hippo eats $food.")
+        println("The Hippo is eating $food.")
     }
 }
-open class Canine : Animal() {
+abstract class Canine : Animal() {
     override fun roam() {
         println("The Canine is roaming")
     }
 }
+
 class Wolf : Canine() {
     override val image = "wolf.jpg"
     override val food = "meat"
@@ -46,6 +49,80 @@ class Wolf : Canine() {
         println("The Wolf is eating $food.")
     }
 }
+
+class Fox : Canine(){
+    override val image = "fox.jpg"
+    override val food = "small animals"
+    override val habitat = "foxland"
+
+    override fun makeNoise() {
+        println("What does the fox say?!")
+    }
+
+    override fun eat(){
+        println("The Fox is eating $food.")
+    }
+}
+
+
+abstract class Feline : Animal(){
+    override fun roam() {
+        println("The Feline is roaming")
+    }
+}
+
+
+
+class Lion : Feline(){
+    override val image = "lion.jpg"
+    override val food = "meat"
+    override val habitat = "Savanah"
+
+    override fun makeNoise() {
+        println("Roarr!")
+    }
+    override fun eat(){
+        println("The Lion eats $food.")
+    }
+}
+
+class Cheetah : Feline() {
+    //Cheetah Code
+    override val image = "cheetah.jpg"
+    override val food = "meat"
+    override val habitat = "Savanah"
+
+    override fun makeNoise() {
+        println("Roarr!")
+    }
+
+    override fun eat() {
+        println("The Cheetah eats $food.")
+    }
+}
+
+class Lynx : Feline() {
+    //Lynx Code
+    override val image = "lynx.jpg"
+    override val food = "meat"
+    override val habitat = "Savanah"
+
+    override fun makeNoise() {
+        println("Roarr!")
+    }
+
+    override fun eat() {
+        println("The Lynx eats $food.")
+    }
+}
+
+
+class Vehicle : Roamable{
+    override fun roam() {
+        println("The Vehicle is roaming")
+    }
+}
+
 class Vet {
     fun giveShot(animal: Animal) {
         animal.makeNoise()
@@ -69,4 +146,5 @@ fun main(args: Array<String>) {
     nWolf.sleep()
     val nHippo = Hippo()
     nHippo.eat()
+
 }
